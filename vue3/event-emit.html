@@ -1,0 +1,22 @@
+<div id="app">
+    <app-contents></app-contents>
+</div>
+
+<script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+<script>
+    var appContents = {
+        template: '<p><button v-on:click="sendEvent">갱신</button></p>'
+        ,
+        methods: {
+            sendEvent(){
+                this.$emit('refresh');
+            }
+        }
+    };
+
+    Vue.createApp({
+        components: {
+            'app-contents': appContents
+        }
+    }).mount('#app');
+</script>
