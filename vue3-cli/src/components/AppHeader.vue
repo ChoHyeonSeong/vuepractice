@@ -1,17 +1,11 @@
 <template>
-  <h1>{{ appTitle }}</h1>
-  <button @click="changeTitle">변경</button>
+    <h1>{{appTitle}}</h1>
 </template>
 
 <script>
-  export default {
-    props: ['appTitle'],
-    methods: {
-      changeTitle() {
-        this.$emit('change');
-      }
+    export default {
+        props: ['appTitle']
     }
-  }
 </script>
 
 <style scoped>

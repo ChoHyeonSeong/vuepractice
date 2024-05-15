@@ -1,5 +1,5 @@
 <div id="app">
-    <app-contents></app-contents>
+    <app-contents v-on:refresh="showAlert"></app-contents>
 </div>
 
 <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
@@ -8,15 +8,20 @@
         template: '<p><button v-on:click="sendEvent">갱신</button></p>'
         ,
         methods: {
-            sendEvent(){
+            sendEvent() {
                 this.$emit('refresh');
             }
         }
     };
 
     Vue.createApp({
+        methods: {
+            showAlert() {
+                alert('새로고침');
+            }
+        },
         components: {
             'app-contents': appContents
-        }
+        },
     }).mount('#app');
 </script>
