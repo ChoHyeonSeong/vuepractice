@@ -1,4 +1,4 @@
-# vue3-form
+# vue-intermediate
 
 ## Project setup
 ```

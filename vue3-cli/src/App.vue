@@ -1,5 +1,6 @@
 <template>
-  <AppHeader v-bind:appTitle="message"></AppHeader>
+  <AppHeader v-bind:appTitle="message" 
+  @change="changeMessage"></AppHeader>
 </template>
 
 <script>
@@ -15,9 +16,9 @@ import AppHeader from './components/AppHeader.vue'
       }
     },
     methods:{
-      showAlert(){
-        alert('hello')
-      }
+      changeMessage(){
+        this.message = '변경됨';
+      }   
     }
   }
 </script>
