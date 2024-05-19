@@ -2,7 +2,7 @@
     <div>
         <ul>
             <li v-for="( todoItem, index ) in propsdata" :key="todoItem.item" class="shadow">
-                <span class="checkBtn" @click="toggleComplete(todoItem, index)">
+                <span class="checkBtn" @click="toggleComplete(index)">
                     <i class="fa-solid fa-check" :class="{ checkBtnCompleted: todoItem.completed }"></i>
                 </span>
                 <span :class="{ textCompleted: todoItem.completed }">{{ todoItem.item }}</span>
@@ -19,14 +19,10 @@ export default {
     props: ['propsdata'],
     methods: {
         removeTodo(todoItem, index) {
-            localStorage.removeItem(todoItem);
-            this.todoItems.splice(index, 1);
+            this.$emit('removeItem',todoItem,index);
         },
-        toggleComplete(todoItem, index) {
-            todoItem.completed = !todoItem.completed;
-            localStorage.removeItem(todoItem.item);
-            localStorage.setItem(todoItem.item, JSON.stringify(todoItem));
-            console.log(index);
+        toggleComplete(index) {
+            this.$emit('toggleItem',index);
         }
     },
 }
