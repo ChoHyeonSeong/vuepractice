@@ -4,14 +4,30 @@
         <span class="addContainer" @click="addTodo">
             <i class="fa-solid fa-plus" style="color: #ffffff;"></i>
         </span>
+
+        <AlertModal :show="showModal" @close="showModal = false">
+            <template #header>
+                <h3>경고!
+                    <span @click="showModal = false">
+                        <i class="closeModalBtn fa-solid fa-square-xmark"></i>
+                    </span>
+                </h3>
+            </template>
+            <template #body>
+                <h3>무언가를 입력하세요.</h3>
+            </template>
+        </AlertModal>
     </div>
 </template>
 
 <script>
+import AlertModal from './common/AlertModal.vue';
+
 export default {
     data() {
         return {
-            newTodoItem: ""
+            newTodoItem: "",
+            showModal: false
         }
     },
     methods: {
@@ -19,12 +35,17 @@ export default {
             if (this.newTodoItem !== '') {
                 this.$emit('addTodoItem', this.newTodoItem);
                 this.clearInput();
+            } else {
+                this.showModal = !this.showModal;
             }
         },
         clearInput() {
             this.newTodoItem = '';
         }
     },
+    components: {
+        AlertModal: AlertModal
+    }
 }
 </script>
 
@@ -56,5 +77,9 @@ input:focus {
 .addBtn {
     color: white;
     vertical-align: middle;
+}
+
+.closeModalBtn {
+    color: #42b983;
 }
 </style>
