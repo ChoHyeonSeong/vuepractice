@@ -1,12 +1,12 @@
 <template>
     <div>
         <TransitionGroup name="list" tag="ul">
-            <li v-for="( todoItem, index ) in propsdata" :key="todoItem.item" class="shadow">
-                <span class="checkBtn" @click="toggleComplete(index)">
+            <li v-for="( todoItem, index ) in this.storedTodoItems" :key="todoItem.item" class="shadow">
+                <span class="checkBtn" @click="toggleComplete({ todoItem, index })">
                     <i class="fa-solid fa-check" :class="{ checkBtnCompleted: todoItem.completed }"></i>
                 </span>
                 <span :class="{ textCompleted: todoItem.completed }">{{ todoItem.item }}</span>
-                <span class="removeBtn" @click="removeTodo(todoItem, index)">
+                <span class="removeBtn" @click="removeTodo({todoItem, index})">
                     <i class="fa-solid fa-trash"></i>
                 </span>
             </li>
@@ -15,16 +15,18 @@
 </template>
 
 <script>
+import { mapGetters, mapMutations } from 'vuex';
+
 export default {
-    props: ['propsdata'],
     methods: {
-        removeTodo(todoItem, index) {
-            this.$emit('removeItem', todoItem, index);
-        },
-        toggleComplete(index) {
-            this.$emit('toggleItem', index);
-        }
+        ...mapMutations({
+            removeTodo: 'removeOneItem',
+            toggleComplete: 'toggleOneItem'
+        }),
     },
+    computed: {
+        ...mapGetters(['storedTodoItems'])
+    }
 }
 </script>
 
