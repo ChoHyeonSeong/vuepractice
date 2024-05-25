@@ -5,11 +5,10 @@
 </template>
 
 <script>
-import TodoHeader from './components/TodoHeader.vue';
-import TodoInput from './components/TodoInput.vue';
-import TodoList from './components/TodoList.vue';
-import { ref } from 'vue';
-
+import TodoHeader from "./components/TodoHeader.vue";
+import TodoInput from "./components/TodoInput.vue";
+import TodoList from "./components/TodoList.vue";
+import { useTodo } from "./hooks/useTodo";
 
 export default {
   components: {
@@ -19,33 +18,23 @@ export default {
   },
   data() {
     return {
-      title: '할일 앱'
-    }
+      title: "할일 앱",
+    };
   },
   setup() {
-    const todoItems = ref([]);
-    function fetchTodos() {
-      const result = [];
-      for (let i = 0; i < localStorage.length; i++) {
-        const todoItem = localStorage.key(i);
-        result.push(todoItem);
-      }
-      return result;
-    }
-    todoItems.value = fetchTodos();
+    // 라이프 사이클 API가 적용된 구간
 
-    function addTodoItem(todo) {
-      todoItems.value.push(todo);
-      localStorage.setItem(todo, todo);
-    }
+    const { todoItems, addTodoItem } = useTodo();
 
-    function removeTodoItem(item, index) {
-      todoItems.value.splice(index, 1);
+    return { todoItems, addTodoItem };
+  },
+  methods: {
+    removeTodoItem(item, index) {
+      this.todoItems.value.splice(index, 1);
       localStorage.removeItem(item, item);
-    }
-    return { todoItems, addTodoItem, removeTodoItem };
-  }
-}
+    },
+  },
+};
 </script>
 
 <style scoped></style>
