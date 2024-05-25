@@ -1,6 +1,7 @@
 <template>
   <div>
-    <input type="text" v-model="todoInput" />
+    <input                                                                                              
+    type="text" v-model="todoInput" />
     <button @click="addTodo">추가</button>
   </div>
 </template>
