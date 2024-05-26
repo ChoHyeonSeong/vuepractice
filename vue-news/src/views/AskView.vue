@@ -1,15 +1,15 @@
 <template>
-    <div>
-        ask
-    </div>
+  <div>
+    <div v-for="item in this.$store.state.ask">{{ item.title }}</div>
+  </div>
 </template>
 
 <script>
-    export default {
-        
-    }
+export default {
+  created() {
+    this.$store.dispatch('FETCH_ASK');
+  },
+};
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>
