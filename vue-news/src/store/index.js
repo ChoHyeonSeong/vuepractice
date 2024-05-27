@@ -1,56 +1,19 @@
-
-import { createStore } from 'vuex'
-import { fetchNewsList ,fetchAskList,fetchJobsList } from "../api/index.js";
-
+import { createStore } from "vuex";
+import mutations from "./mutations";
+import actions from "./actions";
 
 export const store = createStore({
-  state:{
-    news:[],
+  state: {
+    news: [],
     ask: [],
     jobs: [],
+    user: {},
   },
-  mutations:{
-      SET_NEWS(state,data){
-          state.news = data;
-      },
-      SET_ASK(state,data){
-          state.ask = data;
-      },
-      SET_JOBS(state,data){
-          state.jobs = data;
-      }
+  getters: {
+    fetchedAsk(state) {
+      return state.ask;
+    },
   },
-  actions:{
-    FETCH_NEWS(context){
-        fetchNewsList()
-        .then((response)=>{
-            console.log(response);
-            context.commit('SET_NEWS',response.data);
-        })
-        .catch((error)=>{
-            console.log(error);
-        });
-    },
-    FETCH_ASK(context){
-        fetchAskList()
-        .then((response)=>{
-            console.log(response);
-            context.commit('SET_ASK',response.data);
-        })
-        .catch((error)=>{
-            console.log(error);
-        });
-
-    },
-    FETCH_JOBS(context){
-        fetchJobsList()
-        .then((response)=>{
-            console.log(response);
-            context.commit('SET_JOBS',response.data);
-        })
-        .catch((error)=>{
-            console.log(error);
-        });
-    }
-  }  
+  mutations,
+  actions,
 });
