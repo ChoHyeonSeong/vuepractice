@@ -18,11 +18,11 @@ export default {};
   padding: 8px;
 }
 
-.header .router-link-exact-active{
-    color: #35495e;
+.header .router-link-exact-active {
+  color: #35495e;
 }
 
-.header a{
-    color: white;
+.header a {
+  color: white;
 }
 </style>

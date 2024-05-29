@@ -8,11 +8,15 @@ export const store = createStore({
     ask: [],
     jobs: [],
     user: {},
+    item: {},
   },
   getters: {
     fetchedAsk(state) {
       return state.ask;
     },
+    fetchedItem(state){
+      return state.item;
+    }
   },
   mutations,
   actions,
