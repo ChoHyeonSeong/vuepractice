@@ -4,11 +4,10 @@ import actions from "./actions";
 
 export const store = createStore({
   state: {
-    news: [],
-    ask: [],
-    jobs: [],
     user: {},
     item: {},
+    spinner: false,
+    list:[],
   },
   getters: {
     fetchedAsk(state) {
@@ -16,6 +15,9 @@ export const store = createStore({
     },
     fetchedItem(state){
       return state.item;
+    },
+    loadingStatus(state){
+      return state.spinner;
     }
   },
   mutations,

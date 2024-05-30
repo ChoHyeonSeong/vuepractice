@@ -5,11 +5,17 @@
             <i class="fa-solid fa-user"></i>
         </div>
         <div class="user-description">
-            <slot name="userId"></slot>
+            <slot name="userId">
+                <!-- 유저ID -->
+            </slot>
             <div class="time">
-                <slot name="time"></slot>
+                <slot name="time">
+                    <!--  -->
+                </slot>
             </div>
-            <slot name="karma"></slot>
+            <slot name="karma">
+                <!--  -->
+            </slot>
         </div>
     </div>
 </template>

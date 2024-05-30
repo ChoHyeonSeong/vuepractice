@@ -36,24 +36,9 @@
 
 <script>
 export default {
-    created() {
-        const name = this.$route.name;
-        this.$store.dispatch(`FETCH_${name.toUpperCase()}`);
-    },
     computed: {
         listItems() {
-            const name = this.$route.name;
-            let result;
-            if (name === 'news') {
-                result = this.$store.state.news;
-            }
-            else if (name === 'ask') {
-                result = this.$store.state.ask;
-            }
-            else if (name === 'jobs') {
-                result = this.$store.state.jobs;
-            }
-            return result;
+            return this.$store.state.list;
         }
     }
 }
