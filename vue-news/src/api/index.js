@@ -10,8 +10,13 @@ const config = {
 
 // 2. API 함수들을 정리
 
-function fetchList(pagename){
-  return axios.get(`${config.baseUrl}${pagename}/1.json`);
+async function fetchList(pagename) {
+  try {
+    const response = await axios.get(`${config.baseUrl}${pagename}/1.json`);
+    return response;
+  } catch (error) {
+    console.log(error);
+  }
 }
 
 function fetchUserInfo(userId) {
@@ -21,8 +26,4 @@ function fetchItemInfo(itemId) {
   return axios.get(`${config.baseUrl}item/${itemId}.json`);
 }
 
-export {
-  fetchUserInfo,
-  fetchItemInfo,
-  fetchList,
-};
+export { fetchUserInfo, fetchItemInfo, fetchList };

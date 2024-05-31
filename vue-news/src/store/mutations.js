@@ -11,4 +11,10 @@ export default {
   SET_LIST(state, data) {
     state.list = data;
   },
+  START_SPINNER(state) {
+    state.spinner = true;
+  },
+  END_SPINNER(state) {
+    state.spinner = false;
+  },
 };
