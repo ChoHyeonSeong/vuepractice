@@ -5,8 +5,11 @@
 </template>
 
 <script>
+import {  } from "./components/";
   export default {
-    
+    comments:{
+      AppBox
+    }
   }
 </script>
 
