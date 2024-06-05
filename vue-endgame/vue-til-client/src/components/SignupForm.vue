@@ -13,7 +13,7 @@
       <input id="nickname" type="text" v-model="nickname" />
     </div>
     <button type="submit">회원가입</button>
-    <o>{{ logMessage }}</o>
+    <p>{{ logMessage }}</p>
   </form>
 </template>
 
