@@ -7,7 +7,6 @@ export function setInterceptors(instance) {
       const loginStore = useLoginStore();
       const token = loginStore.token; // token 가져오기
       // Do something before request is sent
-      console.log(config);
       config.headers.Authorization = token;
       return config;
     },

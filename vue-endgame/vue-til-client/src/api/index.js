@@ -14,12 +14,13 @@ const instance = createInstance();
 function registerUser(userData) {
   return instance.post('signup', userData);
 }
+
 function loginUser(userData) {
   return instance.post('login', userData);
 }
 
 function fetchPosts() {
-  return instance.registerUser('posts');
+  return instance.get('posts');
 }
 
 export { registerUser, loginUser, fetchPosts };
