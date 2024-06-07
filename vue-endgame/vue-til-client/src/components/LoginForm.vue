@@ -23,7 +23,7 @@
         >
           로그인
         </button>
-        <p>{{ logMessage }}</p>
+        <p class="log">{{ logMessage }}</p>
       </form>
     </div>
   </div>
@@ -58,6 +58,7 @@ export default {
         };
         const { data } = await loginUser(userData);
         console.log(data.user.username);
+        this.loginStore.setToken(data.token);
         this.loginStore.setUsername(data.user.username);
         this.$router.push('/main');
         // this.logMessage = `${data.user.username} 님 환영합니다.`;

@@ -15,15 +15,14 @@
           <input id="nickname" type="text" v-model="nickname" />
         </div>
         <button type="submit">회원가입</button>
-        <p class="log">{{ logMessage }}</p>
       </form>
+      <p class="log">{{ logMessage }}</p>
     </div>
   </div>
 </template>
 
 <script>
 import { registerUser } from '@/api/index';
-import { validateEmail } from '@/utils/validation';
 export default {
   data() {
     return {
@@ -33,29 +32,17 @@ export default {
       logMessage: '',
     };
   },
-  computed: {
-    isUsernameValid() {
-      return validateEmail(this.username);
-    },
-  },
   methods: {
     async submitForm() {
-      try {
-        const userData = {
-          username: this.username,
-          password: this.password,
-          nickname: this.nickname,
-        };
-        const { data } = await registerUser(userData);
-        console.log(data.username);
-        this.logMessage = `${data.username}님이 가입되었습니다.`;
-        this.initForm();
-      } catch (error) {
-        console.log(error.response.data);
-        this.logMessage = error.response.data;
-      } finally {
-        this.initForm();
-      }
+      const userData = {
+        username: this.username,
+        password: this.password,
+        nickname: this.nickname,
+      };
+      const { data } = await registerUser(userData);
+      console.log(data.username);
+      this.logMessage = `${data.username}님이 가입되었습니다.`;
+      this.initForm();
     },
     initForm() {
       this.username = '';
