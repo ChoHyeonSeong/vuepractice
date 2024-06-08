@@ -3,7 +3,7 @@
     <div class="main list-container contents">
       <h1 class="page-header">Today I Learn</h1>
       <loading-spinner v-if="isLoading"></loading-spinner>
-      <ul>
+      <ul v-else>
         <post-list-item
           v-for="postItem in postItems"
           :key="postItem._id"
