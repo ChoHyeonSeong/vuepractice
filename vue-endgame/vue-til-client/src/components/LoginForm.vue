@@ -32,6 +32,7 @@
 <script>
 import { loginUser } from '@/api/index';
 import { useLoginStore } from '@/store/useLoginStore';
+import { saveAuthToCookie, saveUserToCookie } from '@/utils/cookies';
 import { validateEmail } from '@/utils/validation';
 import { mapStores } from 'pinia';
 
@@ -60,6 +61,8 @@ export default {
         console.log(data.user.username);
         this.loginStore.setToken(data.token);
         this.loginStore.setUsername(data.user.username);
+        saveAuthToCookie(data.token);
+        saveUserToCookie(data.user.username);
         this.$router.push('/main');
         // this.logMessage = `${data.user.username} 님 환영합니다.`;
       } catch (error) {
