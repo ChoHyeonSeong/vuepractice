@@ -1,4 +1,4 @@
-import { loginUser } from '@/api';
+import { loginUser } from '@/api/auth';
 import {
   getAuthFromCookie,
   getUserFromCookie,

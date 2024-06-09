@@ -14,14 +14,4 @@ function createInstanceWithAuth(url) {
 }
 
 export const instance = createInstance();
-const posts = createInstanceWithAuth('posts');
-
-function fetchPosts() {
-  return instance.get('posts');
-}
-
-function createPost(postData) {
-  return instance.post('posts', postData);
-}
-
-export { fetchPosts, createPost };
+export const posts = createInstanceWithAuth('posts');
