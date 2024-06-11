@@ -14,7 +14,7 @@
           <label for="nickname">nickname: </label>
           <input id="nickname" type="text" v-model="nickname" />
         </div>
-        <button type="submit">회원가입</button>
+        <button type="submit" class="btn">회원가입</button>
       </form>
       <p class="log">{{ logMessage }}</p>
     </div>
