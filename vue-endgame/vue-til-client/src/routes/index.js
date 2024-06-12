@@ -1,6 +1,6 @@
+import { useLoginStore } from '@/store/useLoginStore';
 import { createRouter, createWebHistory } from 'vue-router';
-
-export default createRouter({
+const router = createRouter({
   history: createWebHistory(),
   routes: [
     {
@@ -18,14 +18,23 @@ export default createRouter({
     {
       path: '/main',
       component: () => import('@/views/MainPage.vue'),
+      meta: {
+        auth: true,
+      },
     },
     {
       path: '/add',
       component: () => import('@/views/PostAddPage.vue'),
+      meta: {
+        auth: true,
+      },
     },
     {
       path: '/post/:id',
       component: () => import('@/views/PostEditPage.vue'),
+      meta: {
+        auth: true,
+      },
     },
     {
       path: '/:pathMatch(.*)*',
@@ -33,3 +42,16 @@ export default createRouter({
     },
   ],
 });
+
+router.beforeEach((to, from, next) => {
+  const store = useLoginStore();
+
+  if (to.meta.auth && !store.isLogin) {
+    console.log('인증이 필요합니다.');
+    next('/login');
+    return;
+  }
+  next();
+});
+
+export default router;

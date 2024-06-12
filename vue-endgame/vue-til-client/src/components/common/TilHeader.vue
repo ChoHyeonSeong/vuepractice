@@ -2,7 +2,7 @@
   <div>
     <header>
       <div>
-        <router-link to="/" class="logo">
+        <router-link :to="logoLink" class="logo">
           TIL
           <span v-if="isUserLogin">by {{ loginStore.username }}</span>
         </router-link>
@@ -26,16 +26,24 @@
 <script>
 import { useLoginStore } from '@/store/useLoginStore';
 import { mapStores } from 'pinia';
+import { deleteCookie } from '@/utils/cookies';
+
 export default {
   computed: {
     ...mapStores(useLoginStore),
     isUserLogin() {
       return this.loginStore.isLogin;
     },
+    logoLink() {
+      return this.loginStore.isLogin ? '/main' : '/login';
+    },
   },
   methods: {
     logoutUser() {
       this.loginStore.clearUsername();
+      this.loginStore.clearToken();
+      deleteCookie('til_auth');
+      deleteCookie('til_user');
       this.$router.push('/login');
     },
   },
