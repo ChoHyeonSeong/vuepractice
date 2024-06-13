@@ -1,0 +1,3 @@
+describe('SignupForm.vue', () => {
+  // test()
+});
